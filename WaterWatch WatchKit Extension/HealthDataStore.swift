@@ -54,6 +54,11 @@ class HealthDataStore {
                 }
                 let percentOfGoal = sum / 3.0
                 let summary = Summary(date: interval.start, volumeDisplayString: String(format: "%.2f L", sum), percentOfGoal: percentOfGoal, entryCount: samples.count)
+                
+                UserDefaults.standard.set(sum, forKey: "UDKey_currentVolume")
+                UserDefaults.standard.set(percentOfGoal, forKey: "UDK_percentOfGoal")
+                UserDefaults.standard.set(Date(), forKey: "UDK_lastUpdated")
+                
                 completion(summary)
             }
         }

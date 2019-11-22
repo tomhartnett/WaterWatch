@@ -32,24 +32,39 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Timeline Population
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        // Call the handler with the current timeline entry
-        handler(nil)
-    }
-    
-    func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        // Call the handler with the timeline entries prior to the given date
-        handler(nil)
-    }
-    
-    func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        // Call the handler with the timeline entries after to the given date
-        handler(nil)
+        
+        var currentVolume: Double = 0.0
+        var percentOfGoal: Double = 0.0
+        
+        let lastUpdated = UserDefaults.standard.value(forKey: "UDK_lastUpdated") as? Date ?? Date.distantFuture
+        if Calendar.current.isDateInToday(lastUpdated) {
+            currentVolume = UserDefaults.standard.double(forKey: "UDKey_currentVolume")
+            percentOfGoal = UserDefaults.standard.double(forKey: "UDK_percentOfGoal")
+        }
+        
+        let displayVolume = String(format: "%.1f", currentVolume)
+        let displayGoal = String(format: "%.0f", percentOfGoal * 100)
+        
+        if complication.family == .graphicCorner {
+            let template = CLKComplicationTemplateGraphicCornerStackText()
+            template.innerTextProvider = CLKSimpleTextProvider(text: "WATER: \(displayGoal)%")
+            template.outerTextProvider = CLKSimpleTextProvider(text: "\(displayVolume) L")
+            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+            handler(entry)
+        } else {
+            handler(nil)
+        }
     }
     
     // MARK: - Placeholder Templates
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        // This method will be called once per supported complication, and the results will be cached
+        
+        if complication.family == .graphicCorner {
+            let template = CLKComplicationTemplateGraphicCornerStackText()
+            template.innerTextProvider = CLKSimpleTextProvider(text: "5 entries")
+            template.outerTextProvider = CLKSimpleTextProvider(text: "1.7 L / 57%")
+        }
         handler(nil)
     }
     
