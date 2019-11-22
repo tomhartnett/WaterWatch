@@ -27,6 +27,9 @@ struct SummaryView: View {
             Text("\(summary.volumeDisplayString) / \(String(format: "%.0f", summary.percentOfGoal * 100))%")
                 .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
                 .padding(.vertical)
+            if summary.entryCount > 0 {
+                Text(String(repeating: "💧", count: summary.entryCount))
+            }
             Text("\(summary.entryCount) \(summary.entryCount == 1 ? "entry" : "entries")")
             Button(action: {
                 self.showAddView.toggle()
@@ -77,7 +80,7 @@ struct SummaryView: View {
         }.alert(isPresented: $showingAlert) {
             Alert(title: Text("HealthKit Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }.sheet(isPresented: $showAddView) {
-            AddView()
+            AddView(isPresented: self.$showAddView)
         }
     }
 }
