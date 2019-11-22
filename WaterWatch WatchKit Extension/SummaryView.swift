@@ -6,17 +6,30 @@
 //  Copyright © 2019 Sleekible LLC. All rights reserved.
 //
 
+import HealthKit
 import SwiftUI
 
 struct SummaryView: View {
     var body: some View {
         VStack {
-            Text("Today")
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-            Text("2.55 L / 0.67 gal")
-            Text("6 servings")
+            Text("Thu, Nov 21")
+            Text("2.55 L")
+                .font(.title)
+            Text("6 entries")
             Button(action: {}) {
                 Text("Add Entry")
+            }
+        }.onAppear() {
+            guard HKHealthStore.isHealthDataAvailable() else { return }
+            guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else { return }
+            let hkTypesToWrite: Set<HKSampleType> = [waterType]
+            let hkTypesToRead: Set<HKObjectType> = [waterType]
+            let hs = HKHealthStore()
+            let status = hs.authorizationStatus(for: waterType)
+            if status == .notDetermined {
+                HKHealthStore().requestAuthorization(toShare: hkTypesToWrite, read: hkTypesToRead) { (authorized, error) in
+                    print("done")
+                }
             }
         }
     }
@@ -24,9 +37,6 @@ struct SummaryView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        return Group {
-            SummaryView()
-            AddView()
-        }
+        SummaryView()
     }
 }

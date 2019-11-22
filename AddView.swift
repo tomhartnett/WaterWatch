@@ -12,6 +12,7 @@ struct AddView: View {
     var body: some View {
         VStack {
             Text("425 mL")
+                .padding(.all, 8.0)
                 .border(/*@START_MENU_TOKEN@*/Color.white/*@END_MENU_TOKEN@*/, width: 1)
                 .font(.title)
             HStack {
@@ -28,3 +29,10 @@ struct AddView: View {
         }
     }
 }
+
+struct AddView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddView()
+    }
+}
+
