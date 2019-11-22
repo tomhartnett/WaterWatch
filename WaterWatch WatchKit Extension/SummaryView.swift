@@ -13,17 +13,26 @@ struct SummaryView: View {
     @State private var showingAlert = false
     @State private var errorMessage = ""
     @State private var showAddView = false
+    @State private var summary = Summary(date: Date(), volumeDisplayString: "0.0 L", percentOfGoal: 0, entryCount: 0)
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE, MMM d"
+        return formatter
+    }()
     
     var body: some View {
         VStack {
-            Text("Thu, Nov 21")
-            Text("2.55 L")
-                .font(.title)
-            Text("6 entries")
+            Text("\(summary.date, formatter: self.dateFormatter)")
+            Text("\(summary.volumeDisplayString) / \(String(format: "%.0f", summary.percentOfGoal * 100))%")
+                .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
+                .padding(.vertical)
+            Text("\(summary.entryCount) \(summary.entryCount == 1 ? "entry" : "entries")")
             Button(action: {
                 self.showAddView.toggle()
             }) {
                 Text("Add Entry")
+                    .font(.system(size: 20, weight: Font.Weight.regular, design: Font.Design.rounded))
             }
         }.onAppear() {
             guard HKHealthStore.isHealthDataAvailable() else {
@@ -49,12 +58,19 @@ struct SummaryView: View {
                         self.errorMessage = "HealthKit access denied"
                         self.showingAlert = true
                     } else {
-                        // query for today's data
+                        dataStore.getWaterForCurrentDay { (summary) in
+                            if let summary = summary {
+                                self.summary = summary
+                            }
+                        }
                     }
                 }
             case .sharingAuthorized:
-                // query for today's data
-                break
+                dataStore.getWaterForCurrentDay { (summary) in
+                    if let summary = summary {
+                        self.summary = summary
+                    }
+                }
             @unknown default:
                 fatalError()
             }
