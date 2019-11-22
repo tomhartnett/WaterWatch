@@ -11,12 +11,13 @@
 		E2B92DF4238739150015676D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF2238739150015676D /* Interface.storyboard */; };
 		E2B92DF6238739160015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF5238739160015676D /* Assets.xcassets */; };
 		E2B92DFD238739160015676D /* WaterWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2B92DFC238739160015676D /* WaterWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E2B92E02238739160015676D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E01238739160015676D /* ContentView.swift */; };
+		E2B92E02238739160015676D /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E01238739160015676D /* SummaryView.swift */; };
 		E2B92E04238739160015676D /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E03238739160015676D /* HostingController.swift */; };
 		E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E05238739160015676D /* ExtensionDelegate.swift */; };
 		E2B92E08238739160015676D /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E07238739160015676D /* ComplicationController.swift */; };
 		E2B92E0A238739170015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E09238739170015676D /* Assets.xcassets */; };
 		E2B92E0D238739170015676D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E0C238739170015676D /* Preview Assets.xcassets */; };
+		E2B92E1D23877D3E0015676D /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E1C23877D3E0015676D /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,13 +69,14 @@
 		E2B92DF5238739160015676D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B92DF7238739160015676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B92DFC238739160015676D /* WaterWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WaterWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2B92E01238739160015676D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E2B92E01238739160015676D /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		E2B92E03238739160015676D /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		E2B92E05238739160015676D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		E2B92E07238739160015676D /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		E2B92E09238739170015676D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B92E0C238739170015676D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2B92E0E238739170015676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2B92E1C23877D3E0015676D /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +122,8 @@
 		E2B92E00238739160015676D /* WaterWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				E2B92E01238739160015676D /* ContentView.swift */,
+				E2B92E01238739160015676D /* SummaryView.swift */,
+				E2B92E1C23877D3E0015676D /* AddView.swift */,
 				E2B92E03238739160015676D /* HostingController.swift */,
 				E2B92E05238739160015676D /* ExtensionDelegate.swift */,
 				E2B92E07238739160015676D /* ComplicationController.swift */,
@@ -269,7 +272,8 @@
 			files = (
 				E2B92E04238739160015676D /* HostingController.swift in Sources */,
 				E2B92E08238739160015676D /* ComplicationController.swift in Sources */,
-				E2B92E02238739160015676D /* ContentView.swift in Sources */,
+				E2B92E1D23877D3E0015676D /* AddView.swift in Sources */,
+				E2B92E02238739160015676D /* SummaryView.swift in Sources */,
 				E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
