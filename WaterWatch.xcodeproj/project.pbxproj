@@ -19,6 +19,7 @@
 		E2B92E0D238739170015676D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E0C238739170015676D /* Preview Assets.xcassets */; };
 		E2B92E1D23877D3E0015676D /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E1C23877D3E0015676D /* AddView.swift */; };
 		E2B92E21238784240015676D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B92E20238784240015676D /* HealthKit.framework */; };
+		E2B92E23238820710015676D /* HealthDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E22238820710015676D /* HealthDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		E2B92E1C23877D3E0015676D /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = SOURCE_ROOT; };
 		E2B92E1E238784240015676D /* WaterWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WaterWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		E2B92E20238784240015676D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		E2B92E22238820710015676D /* HealthDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				E2B92E1E238784240015676D /* WaterWatch WatchKit Extension.entitlements */,
 				E2B92E01238739160015676D /* SummaryView.swift */,
 				E2B92E1C23877D3E0015676D /* AddView.swift */,
+				E2B92E22238820710015676D /* HealthDataStore.swift */,
 				E2B92E03238739160015676D /* HostingController.swift */,
 				E2B92E05238739160015676D /* ExtensionDelegate.swift */,
 				E2B92E07238739160015676D /* ComplicationController.swift */,
@@ -287,6 +290,7 @@
 				E2B92E04238739160015676D /* HostingController.swift in Sources */,
 				E2B92E08238739160015676D /* ComplicationController.swift in Sources */,
 				E2B92E1D23877D3E0015676D /* AddView.swift in Sources */,
+				E2B92E23238820710015676D /* HealthDataStore.swift in Sources */,
 				E2B92E02238739160015676D /* SummaryView.swift in Sources */,
 				E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */,
 			);

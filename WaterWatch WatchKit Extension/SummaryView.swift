@@ -10,27 +10,58 @@ import HealthKit
 import SwiftUI
 
 struct SummaryView: View {
+    @State private var showingAlert = false
+    @State private var errorMessage = ""
+    @State private var showAddView = false
+    
     var body: some View {
         VStack {
             Text("Thu, Nov 21")
             Text("2.55 L")
                 .font(.title)
             Text("6 entries")
-            Button(action: {}) {
+            Button(action: {
+                self.showAddView.toggle()
+            }) {
                 Text("Add Entry")
             }
         }.onAppear() {
-            guard HKHealthStore.isHealthDataAvailable() else { return }
-            guard let waterType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else { return }
-            let hkTypesToWrite: Set<HKSampleType> = [waterType]
-            let hkTypesToRead: Set<HKObjectType> = [waterType]
-            let hs = HKHealthStore()
-            let status = hs.authorizationStatus(for: waterType)
-            if status == .notDetermined {
-                HKHealthStore().requestAuthorization(toShare: hkTypesToWrite, read: hkTypesToRead) { (authorized, error) in
-                    print("done")
-                }
+            guard HKHealthStore.isHealthDataAvailable() else {
+                self.errorMessage = "HealthKit not available"
+                self.showingAlert = true
+                return
             }
+            let dataStore = HealthDataStore()
+            let status = dataStore.getAuthorizationStatus()
+            switch status {
+            case .sharingDenied:
+                self.errorMessage = "HealthKit access denied"
+                self.showingAlert = true
+            case .notDetermined:
+                dataStore.requestAuthorization { (authorized, error) in
+                    if let error = error {
+                        self.errorMessage = error.localizedDescription
+                        self.showingAlert = true
+                        return
+                    }
+                    
+                    if !authorized {
+                        self.errorMessage = "HealthKit access denied"
+                        self.showingAlert = true
+                    } else {
+                        // query for today's data
+                    }
+                }
+            case .sharingAuthorized:
+                // query for today's data
+                break
+            @unknown default:
+                fatalError()
+            }
+        }.alert(isPresented: $showingAlert) {
+            Alert(title: Text("HealthKit Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+        }.sheet(isPresented: $showAddView) {
+            AddView()
         }
     }
 }
