@@ -17,6 +17,8 @@ struct AddView: View {
             Text("\(sampleSize, specifier: "%.0f") mL")
                 .padding(.all, 8.0)
                 .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
+                .focusable(true)
+                .digitalCrownRotation($sampleSize, from: 25.0, through: 1000.0, by: 5.0, sensitivity: .medium, isContinuous: false, isHapticFeedbackEnabled: true)
             HStack {
                 Button(action: {
                     self.sampleSize -= 25

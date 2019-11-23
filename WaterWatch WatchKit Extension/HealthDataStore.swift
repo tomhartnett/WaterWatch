@@ -8,6 +8,7 @@
 
 import Foundation
 import HealthKit
+import WatchKit
 
 class HealthDataStore {
     typealias AuthorizationStatus = HKAuthorizationStatus
@@ -55,9 +56,17 @@ class HealthDataStore {
                 let percentOfGoal = sum / 3.0
                 let summary = Summary(date: interval.start, volumeDisplayString: String(format: "%.2f L", sum), percentOfGoal: percentOfGoal, entryCount: samples.count)
                 
-                UserDefaults.standard.set(sum, forKey: "UDKey_currentVolume")
-                UserDefaults.standard.set(percentOfGoal, forKey: "UDK_percentOfGoal")
-                UserDefaults.standard.set(Date(), forKey: "UDK_lastUpdated")
+                let previousCount = UserDefaults.standard.integer(forKey: "UDKey_entryCount")
+                if previousCount != samples.count {
+                    UserDefaults.standard.set(samples.count, forKey: "UDKey_entryCount")
+                    UserDefaults.standard.set(sum, forKey: "UDKey_currentVolume")
+                    UserDefaults.standard.set(percentOfGoal, forKey: "UDK_percentOfGoal")
+                    UserDefaults.standard.set(Date(), forKey: "UDK_lastUpdated")
+                    
+                    for complication in CLKComplicationServer.sharedInstance().activeComplications ?? [] {
+                        CLKComplicationServer.sharedInstance().reloadTimeline(for: complication)
+                    }
+                }
                 
                 completion(summary)
             }
