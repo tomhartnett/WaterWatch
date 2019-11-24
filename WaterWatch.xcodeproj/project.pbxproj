@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E21198B1238AB97A0088F5FD /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21198B0238AB9790088F5FD /* Summary.swift */; };
+		E21198B5238ABA5E0088F5FD /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21198B4238ABA5E0088F5FD /* AddView.swift */; };
 		E2B92DEE238739150015676D /* WaterWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E2B92DED238739150015676D /* WaterWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E2B92DF4238739150015676D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF2238739150015676D /* Interface.storyboard */; };
 		E2B92DF6238739160015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF5238739160015676D /* Assets.xcassets */; };
@@ -17,10 +19,8 @@
 		E2B92E08238739160015676D /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E07238739160015676D /* ComplicationController.swift */; };
 		E2B92E0A238739170015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E09238739170015676D /* Assets.xcassets */; };
 		E2B92E0D238739170015676D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E0C238739170015676D /* Preview Assets.xcassets */; };
-		E2B92E1D23877D3E0015676D /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E1C23877D3E0015676D /* AddView.swift */; };
 		E2B92E21238784240015676D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B92E20238784240015676D /* HealthKit.framework */; };
 		E2B92E23238820710015676D /* HealthDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E22238820710015676D /* HealthDataStore.swift */; };
-		E2B92E4723886BA20015676D /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E4623886BA20015676D /* Summary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +66,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E21198B0238AB9790088F5FD /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		E21198B4238ABA5E0088F5FD /* AddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		E2B92DE9238739140015676D /* WaterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B92DED238739150015676D /* WaterWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WaterWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B92DF3238739150015676D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -79,11 +81,9 @@
 		E2B92E09238739170015676D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B92E0C238739170015676D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2B92E0E238739170015676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2B92E1C23877D3E0015676D /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = SOURCE_ROOT; };
 		E2B92E1E238784240015676D /* WaterWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WaterWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		E2B92E20238784240015676D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		E2B92E22238820710015676D /* HealthDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataStore.swift; sourceTree = "<group>"; };
-		E2B92E4623886BA20015676D /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Summary.swift; path = ../../Summary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,9 +133,9 @@
 			children = (
 				E2B92E1E238784240015676D /* WaterWatch WatchKit Extension.entitlements */,
 				E2B92E01238739160015676D /* SummaryView.swift */,
-				E2B92E1C23877D3E0015676D /* AddView.swift */,
+				E21198B4238ABA5E0088F5FD /* AddView.swift */,
+				E21198B0238AB9790088F5FD /* Summary.swift */,
 				E2B92E22238820710015676D /* HealthDataStore.swift */,
-				E2B92E4623886BA20015676D /* Summary.swift */,
 				E2B92E03238739160015676D /* HostingController.swift */,
 				E2B92E05238739160015676D /* ExtensionDelegate.swift */,
 				E2B92E07238739160015676D /* ComplicationController.swift */,
@@ -290,13 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21198B5238ABA5E0088F5FD /* AddView.swift in Sources */,
 				E2B92E04238739160015676D /* HostingController.swift in Sources */,
 				E2B92E08238739160015676D /* ComplicationController.swift in Sources */,
-				E2B92E1D23877D3E0015676D /* AddView.swift in Sources */,
 				E2B92E23238820710015676D /* HealthDataStore.swift in Sources */,
 				E2B92E02238739160015676D /* SummaryView.swift in Sources */,
 				E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */,
-				E2B92E4723886BA20015676D /* Summary.swift in Sources */,
+				E21198B1238AB97A0088F5FD /* Summary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

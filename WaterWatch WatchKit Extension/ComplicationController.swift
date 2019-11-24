@@ -42,7 +42,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             percentOfGoal = UserDefaults.standard.double(forKey: "UDK_percentOfGoal")
         }
         
-        let displayVolume = String(format: "%.1f", currentVolume)
+        let volumeLiters = Measurement(value: currentVolume, unit: UnitVolume.milliliters)
+        let displayVolume = String(format: "%.1f", volumeLiters.converted(to: .liters).value)
         let displayGoal = String(format: "%.0f", percentOfGoal * 100)
         
         if complication.family == .graphicCorner {
@@ -62,8 +63,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         
         if complication.family == .graphicCorner {
             let template = CLKComplicationTemplateGraphicCornerStackText()
-            template.innerTextProvider = CLKSimpleTextProvider(text: "5 entries")
-            template.outerTextProvider = CLKSimpleTextProvider(text: "1.7 L / 57%")
+            template.innerTextProvider = CLKSimpleTextProvider(text: "WATER: 57%")
+            template.outerTextProvider = CLKSimpleTextProvider(text: "1.7 L")
+            handler(template)
+            return
         }
         handler(nil)
     }

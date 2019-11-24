@@ -48,13 +48,13 @@ class HealthDataStore {
             if let samples = samples {
                 let sum = samples.reduce(0) { (result, sample) -> Double in
                     if let quantitySample = sample as? HKQuantitySample {
-                        return result + quantitySample.quantity.doubleValue(for: HKUnit.liter())
+                        return result + quantitySample.quantity.doubleValue(for: HKUnit.literUnit(with: .milli))
                     } else {
                         return result
                     }
                 }
-                let percentOfGoal = sum / 3.0
-                let summary = Summary(date: interval.start, volumeDisplayString: String(format: "%.2f L", sum), percentOfGoal: percentOfGoal, entryCount: samples.count)
+                let percentOfGoal = sum / 3000
+                let summary = Summary(date: interval.start, volumeMilliliters: sum, percentOfGoal: percentOfGoal, entryCount: samples.count)
                 
                 let previousCount = UserDefaults.standard.integer(forKey: "UDKey_entryCount")
                 if previousCount != samples.count {

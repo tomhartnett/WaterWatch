@@ -13,7 +13,7 @@ struct SummaryView: View {
     @State private var showingAlert = false
     @State private var errorMessage = ""
     @State private var showAddView = false
-    @State private var summary = Summary(date: Date(), volumeDisplayString: "0.0 L", percentOfGoal: 0, entryCount: 0)
+    @State private var summary = Summary(date: Date(), volumeMilliliters: 0, percentOfGoal: 0, entryCount: 0)
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -24,7 +24,7 @@ struct SummaryView: View {
     var body: some View {
         VStack {
             Text("\(summary.date, formatter: self.dateFormatter)")
-            Text("\(summary.volumeDisplayString) / \(String(format: "%.0f", summary.percentOfGoal * 100))%")
+            Text("\(summary.volumeLiters, specifier: "%.2f") L / \(summary.percentOfGoal * 100, specifier: "%.0f")%")
                 .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
                 .padding(.vertical)
             if summary.entryCount > 0 {
