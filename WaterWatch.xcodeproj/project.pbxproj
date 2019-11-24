@@ -70,6 +70,9 @@
 		E21198B0238AB9790088F5FD /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		E21198B4238ABA5E0088F5FD /* AddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		E2545187238AD656003D6843 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalState.swift; path = "WaterWatch WatchKit Extension/GlobalState.swift"; sourceTree = SOURCE_ROOT; };
+		E254518A238AF37B003D6843 /* complication.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = complication.PNG; sourceTree = "<group>"; };
+		E254518B238AF37B003D6843 /* addView.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addView.PNG; sourceTree = "<group>"; };
+		E254518C238AF37B003D6843 /* summaryView.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summaryView.PNG; sourceTree = "<group>"; };
 		E2B92DE9238739140015676D /* WaterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B92DED238739150015676D /* WaterWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WaterWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B92DF3238739150015676D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -118,9 +121,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E2545189238AF362003D6843 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				E254518B238AF37B003D6843 /* addView.PNG */,
+				E254518A238AF37B003D6843 /* complication.PNG */,
+				E254518C238AF37B003D6843 /* summaryView.PNG */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		E2B92DE2238739140015676D = {
 			isa = PBXGroup;
 			children = (
+				E2545189238AF362003D6843 /* Screenshots */,
 				E2B92DF1238739150015676D /* WaterWatch WatchKit App */,
 				E2B92E00238739160015676D /* WaterWatch WatchKit Extension */,
 				E2B92DEA238739140015676D /* Products */,
