@@ -17,9 +17,7 @@ struct Summary {
 
 extension Summary {
     var volumeLiters: Double {
-        print("volumeMilliliters: \(volumeMilliliters)")
         let measurement = Measurement(value: volumeMilliliters, unit: UnitVolume.milliliters)
-        print("volumeLiters: \(measurement.converted(to: .liters).value)")
         return measurement.converted(to: .liters).value
     }
     var volumeFluidOunces: Double {

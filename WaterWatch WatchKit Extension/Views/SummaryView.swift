@@ -10,10 +10,7 @@ import HealthKit
 import SwiftUI
 
 struct SummaryView: View {
-    @State private var showingAlert = false
-    @State private var errorMessage = ""
-    @State private var showAddView = false
-    @State private var summary = Summary(date: Date(), volumeMilliliters: 0, percentOfGoal: 0, entryCount: 0)
+    @ObservedObject var globalState = GlobalState()
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -23,47 +20,45 @@ struct SummaryView: View {
     
     var body: some View {
         VStack {
-            Text("\(summary.date, formatter: self.dateFormatter)")
-            Text("\(summary.volumeLiters, specifier: "%.2f") L / \(summary.percentOfGoal * 100, specifier: "%.0f")%")
+            Text("\(globalState.dailySummary.date, formatter: self.dateFormatter)")
+            Text("\(globalState.dailySummary.volumeLiters, specifier: "%.2f") L / \(globalState.dailySummary.percentOfGoal * 100, specifier: "%.0f")%")
                 .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
                 .padding(.vertical)
-            if summary.entryCount > 0 {
-                Text(String(repeating: "💧", count: summary.entryCount))
+            if globalState.dailySummary.entryCount > 0 {
+                Text(String(repeating: "💧", count: globalState.dailySummary.entryCount))
             }
-            Text("\(summary.entryCount) \(summary.entryCount == 1 ? "entry" : "entries")")
+            Text("\(globalState.dailySummary.entryCount) \(globalState.dailySummary.entryCount == 1 ? "entry" : "entries")")
             Button(action: {
-                self.showAddView.toggle()
+                self.globalState.showAddView.toggle()
             }) {
                 Text("Add Entry")
                     .font(.system(size: 20, weight: Font.Weight.regular, design: Font.Design.rounded))
             }
         }.onAppear() {
             guard HKHealthStore.isHealthDataAvailable() else {
-                self.errorMessage = "HealthKit not available"
-                self.showingAlert = true
+                self.globalState.errorMessage = "HealthKit not available"
                 return
             }
             let dataStore = HealthDataStore()
             let status = dataStore.getAuthorizationStatus()
             switch status {
             case .sharingDenied:
-                self.errorMessage = "HealthKit access denied"
-                self.showingAlert = true
+                self.globalState.errorMessage = "HealthKit access denied"
             case .notDetermined:
                 dataStore.requestAuthorization { (authorized, error) in
                     if let error = error {
-                        self.errorMessage = error.localizedDescription
-                        self.showingAlert = true
+                        self.globalState.errorMessage = error.localizedDescription
                         return
                     }
                     
                     if !authorized {
-                        self.errorMessage = "HealthKit access denied"
-                        self.showingAlert = true
+                        self.globalState.errorMessage = "HealthKit access denied"
                     } else {
                         dataStore.getWaterForCurrentDay { (summary) in
                             if let summary = summary {
-                                self.summary = summary
+                                DispatchQueue.main.async {
+                                    self.globalState.dailySummary = summary
+                                }
                             }
                         }
                     }
@@ -71,16 +66,18 @@ struct SummaryView: View {
             case .sharingAuthorized:
                 dataStore.getWaterForCurrentDay { (summary) in
                     if let summary = summary {
-                        self.summary = summary
+                        DispatchQueue.main.async {
+                            self.globalState.dailySummary = summary
+                        }
                     }
                 }
             @unknown default:
                 fatalError()
             }
-        }.alert(isPresented: $showingAlert) {
-            Alert(title: Text("HealthKit Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
-        }.sheet(isPresented: $showAddView) {
-            AddView(isPresented: self.$showAddView)
+        }.alert(isPresented: $globalState.showError) {
+            Alert(title: Text("HealthKit Error"), message: Text(globalState.errorMessage), dismissButton: .default(Text("OK")))
+        }.sheet(isPresented: $globalState.showAddView) {
+            AddView(isPresented: self.$globalState.showAddView)
         }
     }
 }
