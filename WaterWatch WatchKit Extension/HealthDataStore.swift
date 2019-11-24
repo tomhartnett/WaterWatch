@@ -54,14 +54,20 @@ class HealthDataStore {
                     }
                 }
                 let percentOfGoal = sum / 3000
-                let summary = Summary(date: interval.start, volumeMilliliters: sum, percentOfGoal: percentOfGoal, entryCount: samples.count)
+                
+                let summary: Summary
+                let lastUpdated = UserDefaults.standard.object(forKey: "UDK_lastUpdated") as? Date ?? Date.distantPast
+                if samples.count > 0 {
+                    summary = Summary(date: lastUpdated, volumeMilliliters: sum, percentOfGoal: percentOfGoal, entryCount: samples.count)
+                } else {
+                    summary = Summary(date: interval.start, volumeMilliliters: 0, percentOfGoal: 0, entryCount: 0)
+                }
                 
                 let previousCount = UserDefaults.standard.integer(forKey: "UDKey_entryCount")
                 if previousCount != samples.count {
                     UserDefaults.standard.set(samples.count, forKey: "UDKey_entryCount")
                     UserDefaults.standard.set(sum, forKey: "UDKey_currentVolume")
                     UserDefaults.standard.set(percentOfGoal, forKey: "UDK_percentOfGoal")
-                    UserDefaults.standard.set(Date(), forKey: "UDK_lastUpdated")
                     
                     for complication in CLKComplicationServer.sharedInstance().activeComplications ?? [] {
                         CLKComplicationServer.sharedInstance().reloadTimeline(for: complication)
@@ -88,7 +94,7 @@ class HealthDataStore {
                 return
             }
             if success {
-                print("Sample saved")
+                UserDefaults.standard.set(Date(), forKey: "UDK_lastUpdated")
             }
         }
     }

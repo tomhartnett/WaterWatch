@@ -18,6 +18,14 @@ struct SummaryView: View {
         return formatter
     }()
     
+    let timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mma"
+        formatter.amSymbol = "am"
+        formatter.pmSymbol = "pm"
+        return formatter
+    }()
+    
     var body: some View {
         VStack {
             Text("\(globalState.dailySummary.date, formatter: self.dateFormatter)")
@@ -25,9 +33,10 @@ struct SummaryView: View {
                 .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
                 .padding(.vertical)
             if globalState.dailySummary.entryCount > 0 {
-                Text(String(repeating: "💧", count: globalState.dailySummary.entryCount))
+                Text("\(globalState.dailySummary.entryCount)💧 - \(globalState.dailySummary.date, formatter: self.timeFormatter)")
+            } else {
+                Text("0💧")
             }
-            Text("\(globalState.dailySummary.entryCount) \(globalState.dailySummary.entryCount == 1 ? "entry" : "entries")")
             Button(action: {
                 self.globalState.showAddView.toggle()
             }) {
