@@ -8,10 +8,20 @@
 
 import Foundation
 
+enum PreferredUnit: Int {
+    case milliliters
+    case fluidOunces
+}
+
 class GlobalState: ObservableObject {
     @Published var showAddView: Bool
     @Published var showError: Bool
     @Published var dailySummary: Summary
+    @Published var preferredUnit: PreferredUnit {
+        didSet {
+            UserDefaults.standard.set(preferredUnit.rawValue, forKey: "UDK_preferredUnit")
+        }
+    }
 
     var errorMessage: String {
         didSet {
@@ -23,6 +33,7 @@ class GlobalState: ObservableObject {
         errorMessage = ""
         showAddView = false
         showError = false
+        preferredUnit = .milliliters
         
         let savedCount = UserDefaults.standard.integer(forKey: "UDKey_entryCount")
         let lastUpdated = UserDefaults.standard.object(forKey: "") as? Date ?? Date.distantPast
@@ -36,6 +47,11 @@ class GlobalState: ObservableObject {
             volumeMilliliters: 0,
             percentOfGoal: 0,
             entryCount: 0)
+        }
+        
+        let savedUnitRawValue = UserDefaults.standard.integer(forKey: "UDK_preferredUnitUDK_preferredUnit")
+        if let savedUnit = PreferredUnit(rawValue: savedUnitRawValue) {
+            preferredUnit = savedUnit
         }
     }
 }

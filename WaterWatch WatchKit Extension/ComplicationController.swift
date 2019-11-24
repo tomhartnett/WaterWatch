@@ -42,14 +42,21 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             percentOfGoal = UserDefaults.standard.double(forKey: "UDK_percentOfGoal")
         }
         
-        let volumeLiters = Measurement(value: currentVolume, unit: UnitVolume.milliliters)
-        let displayVolume = String(format: "%.1f", volumeLiters.converted(to: .liters).value)
         let displayGoal = String(format: "%.0f", percentOfGoal * 100)
+
+        let volumeMilliliters = Measurement(value: currentVolume, unit: UnitVolume.milliliters)
+        let displayVolume: String
+        let preferredUnit = PreferredUnit(rawValue: UserDefaults.standard.integer(forKey: "UDK_preferredUnit"))
+        if preferredUnit == PreferredUnit.fluidOunces {
+            displayVolume = String(format: "%.0f oz", volumeMilliliters.converted(to: .fluidOunces).value)
+        } else {
+            displayVolume = String(format: "%.1f L", volumeMilliliters.converted(to: .liters).value)
+        }
         
         if complication.family == .graphicCorner {
             let template = CLKComplicationTemplateGraphicCornerStackText()
             template.innerTextProvider = CLKSimpleTextProvider(text: "WATER: \(displayGoal)%")
-            template.outerTextProvider = CLKSimpleTextProvider(text: "\(displayVolume) L")
+            template.outerTextProvider = CLKSimpleTextProvider(text: "\(displayVolume)")
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
         } else {

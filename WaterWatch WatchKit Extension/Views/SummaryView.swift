@@ -29,14 +29,23 @@ struct SummaryView: View {
     var body: some View {
         VStack {
             Text("\(globalState.dailySummary.date, formatter: self.dateFormatter)")
-            Text("\(globalState.dailySummary.volumeLiters, specifier: "%.2f") L / \(globalState.dailySummary.percentOfGoal * 100, specifier: "%.0f")%")
-                .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
-                .padding(.vertical)
+            
+            if globalState.preferredUnit == PreferredUnit.fluidOunces {
+                Text("\(globalState.dailySummary.volumeFluidOunces, specifier: "%.0f") fl oz / \(globalState.dailySummary.percentOfGoal * 100, specifier: "%.0f")%")
+                    .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
+                    .padding(.vertical)
+            } else {
+                Text("\(globalState.dailySummary.volumeLiters, specifier: "%.2f") L / \(globalState.dailySummary.percentOfGoal * 100, specifier: "%.0f")%")
+                    .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
+                    .padding(.vertical)
+            }
+            
             if globalState.dailySummary.entryCount > 0 {
                 Text("\(globalState.dailySummary.entryCount)💧 - \(globalState.dailySummary.date, formatter: self.timeFormatter)")
             } else {
                 Text("0💧")
             }
+            
             Button(action: {
                 self.globalState.showAddView.toggle()
             }) {
@@ -87,6 +96,17 @@ struct SummaryView: View {
             Alert(title: Text("HealthKit Error"), message: Text(globalState.errorMessage), dismissButton: .default(Text("OK")))
         }.sheet(isPresented: $globalState.showAddView) {
             AddView(isPresented: self.$globalState.showAddView)
+        }.contextMenu {
+            Button(action: {
+                self.globalState.preferredUnit = PreferredUnit.milliliters
+            }) {
+                Text("Liters (mL)")
+            }
+            Button(action: {
+                self.globalState.preferredUnit = PreferredUnit.fluidOunces
+            }) {
+                Text("Fluid Ounces (fl oz)")
+            }
         }
     }
 }
