@@ -81,6 +81,11 @@ class HealthDataStore {
         HKHealthStore().execute(query)
     }
     
+    func saveWaterSample(sampleSizeFluidOunces: Double, date: Date) {
+        let measurement = Measurement(value: sampleSizeFluidOunces, unit: UnitVolume.fluidOunces)
+        saveWaterSample(sampleSizeMilliliters: measurement.converted(to: .milliliters).value, date: date)
+    }
+    
     func saveWaterSample(sampleSizeMilliliters: Double, date: Date) {
         guard let sampleType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
             return

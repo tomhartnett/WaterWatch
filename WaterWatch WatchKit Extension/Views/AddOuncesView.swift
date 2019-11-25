@@ -1,38 +1,46 @@
 //
-//  AddView.swift
+//  AddOuncesView.swift
 //  WaterWatch WatchKit Extension
 //
-//  Created by Tom Hartnett on 11/21/19.
+//  Created by Tom Hartnett on 11/24/19.
 //  Copyright © 2019 Sleekible LLC. All rights reserved.
 //
 
 import SwiftUI
 
-struct AddView: View {
+struct AddOuncesView: View {
     @Binding var isPresented: Bool
-    @State private var sampleSize = 425.0
+    @State private var sampleSize = 12.0
     
     var body: some View {
         VStack {
-            Text("\(sampleSize, specifier: "%.0f") mL")
+            Text("\(sampleSize, specifier: "%.0f") oz")
                 .padding(.all, 8.0)
                 .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
                 .focusable(true)
-                .digitalCrownRotation($sampleSize, from: 25.0, through: 1000.0, by: 5.0, sensitivity: .medium, isContinuous: false, isHapticFeedbackEnabled: true)
+                .digitalCrownRotation($sampleSize, from: 1.0, through: 128.0, by: 1.0, sensitivity: .medium, isContinuous: false, isHapticFeedbackEnabled: true)
             HStack {
                 Button(action: {
-                    self.sampleSize -= 25
+                    self.sampleSize -= 2
+                    if self.sampleSize <= 0 {
+                        self.sampleSize = 1
+                    }
                 }) {
                     Image(systemName: "minus")
                 }
                 Button(action: {
-                    self.sampleSize += 25
+                    self.sampleSize += 2
+                    if self.sampleSize >= 128 {
+                        self.sampleSize = 128
+                    }
                 }) {
                     Image(systemName: "plus")
                 }
             }
             Button(action: {
-                HealthDataStore().saveWaterSample(sampleSizeMilliliters: self.sampleSize, date: Date())
+                if self.sampleSize > 0 {
+                    HealthDataStore().saveWaterSample(sampleSizeFluidOunces: self.sampleSize, date: Date())
+                }
                 self.isPresented = false
             }) {
                 Text("Add")
@@ -42,9 +50,9 @@ struct AddView: View {
     }
 }
 
-struct AddView_Previews: PreviewProvider {
+
+struct AddOuncesView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView(isPresented: .constant(true))
+        AddOuncesView(isPresented: .constant(true))
     }
 }
-

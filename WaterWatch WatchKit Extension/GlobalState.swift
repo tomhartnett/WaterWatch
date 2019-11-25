@@ -49,7 +49,7 @@ class GlobalState: ObservableObject {
             entryCount: 0)
         }
         
-        let savedUnitRawValue = UserDefaults.standard.integer(forKey: "UDK_preferredUnitUDK_preferredUnit")
+        let savedUnitRawValue = UserDefaults.standard.integer(forKey: "UDK_preferredUnit")
         if let savedUnit = PreferredUnit(rawValue: savedUnitRawValue) {
             preferredUnit = savedUnit
         }

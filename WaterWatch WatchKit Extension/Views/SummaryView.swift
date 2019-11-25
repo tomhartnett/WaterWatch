@@ -95,7 +95,11 @@ struct SummaryView: View {
         }.alert(isPresented: $globalState.showError) {
             Alert(title: Text("HealthKit Error"), message: Text(globalState.errorMessage), dismissButton: .default(Text("OK")))
         }.sheet(isPresented: $globalState.showAddView) {
-            AddView(isPresented: self.$globalState.showAddView)
+            if self.globalState.preferredUnit == PreferredUnit.fluidOunces {
+                AddOuncesView(isPresented: self.$globalState.showAddView)
+            } else {
+                AddMillilitersView(isPresented: self.$globalState.showAddView)
+            }
         }.contextMenu {
             Button(action: {
                 self.globalState.preferredUnit = PreferredUnit.milliliters
