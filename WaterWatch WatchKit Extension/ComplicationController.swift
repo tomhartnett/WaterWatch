@@ -86,9 +86,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
         case .modularSmall:
-            let template = CLKComplicationTemplateModularSmallStackText()
-            template.line1TextProvider = CLKSimpleTextProvider(text: "\(displayPercentOfGoal)")
-            template.line2TextProvider = CLKSimpleTextProvider(text: "\(displayVolume)")
+            let template = CLKComplicationTemplateModularSmallRingText()
+            template.fillFraction = Float(percentOfGoal)
+            template.textProvider = CLKSimpleTextProvider(text: "💧")
             template.tintColor = UIColor.nowPlayingBlue()
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
@@ -101,7 +101,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         
-        let percentOfGoal = 50.0
+        let percentOfGoal = 0.5
         let displayPercentOfGoal = "50%"
         let preferredUnit = PreferredUnit(rawValue: UserDefaults.standard.integer(forKey: "UDK_preferredUnit"))
         let displayVolume: String
@@ -140,9 +140,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template.tintColor = UIColor.nowPlayingBlue()
             handler(template)
         case .modularSmall:
-            let template = CLKComplicationTemplateModularSmallStackText()
-            template.line1TextProvider = CLKSimpleTextProvider(text: "\(displayPercentOfGoal)")
-            template.line2TextProvider = CLKSimpleTextProvider(text: "\(displayVolume)")
+            let template = CLKComplicationTemplateModularSmallRingText()
+            template.fillFraction = Float(percentOfGoal)
+            template.textProvider = CLKSimpleTextProvider(text: "💧")
             template.tintColor = UIColor.nowPlayingBlue()
             handler(template)
         default:
