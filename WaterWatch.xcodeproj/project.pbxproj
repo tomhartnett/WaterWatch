@@ -11,6 +11,7 @@
 		E21198B5238ABA5E0088F5FD /* AddMillilitersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21198B4238ABA5E0088F5FD /* AddMillilitersView.swift */; };
 		E2545188238AD656003D6843 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2545187238AD656003D6843 /* GlobalState.swift */; };
 		E2545190238B5646003D6843 /* AddOuncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254518F238B5646003D6843 /* AddOuncesView.swift */; };
+		E2923F8123900E13001F6CB7 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */; };
 		E2B92DEE238739150015676D /* WaterWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E2B92DED238739150015676D /* WaterWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E2B92DF4238739150015676D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF2238739150015676D /* Interface.storyboard */; };
 		E2B92DF6238739160015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF5238739160015676D /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		E254518B238AF37B003D6843 /* addView.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addView.PNG; sourceTree = "<group>"; };
 		E254518C238AF37B003D6843 /* summaryView.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summaryView.PNG; sourceTree = "<group>"; };
 		E254518F238B5646003D6843 /* AddOuncesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOuncesView.swift; sourceTree = "<group>"; };
+		E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		E2B92DE9238739140015676D /* WaterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B92DED238739150015676D /* WaterWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WaterWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B92DF3238739150015676D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				E2B92E09238739170015676D /* Assets.xcassets */,
 				E2B92E0E238739170015676D /* Info.plist */,
 				E2B92E0B238739170015676D /* Preview Content */,
+				E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */,
 			);
 			path = "WaterWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				E2545190238B5646003D6843 /* AddOuncesView.swift in Sources */,
 				E2545188238AD656003D6843 /* GlobalState.swift in Sources */,
 				E21198B1238AB97A0088F5FD /* Summary.swift in Sources */,
+				E2923F8123900E13001F6CB7 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
