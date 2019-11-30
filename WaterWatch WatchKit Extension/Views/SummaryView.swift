@@ -33,10 +33,12 @@ struct SummaryView: View {
             if globalState.preferredUnit == PreferredUnit.fluidOunces {
                 Text("\(globalState.dailySummary.volumeFluidOunces, specifier: "%.0f") fl oz / \(globalState.dailySummary.percentOfGoal * 100, specifier: "%.0f")%")
                     .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
+                    .allowsTightening(true)
                     .padding(.vertical)
             } else {
                 Text("\(globalState.dailySummary.volumeLiters, specifier: "%.2f") L / \(globalState.dailySummary.percentOfGoal * 100, specifier: "%.0f")%")
                     .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
+                    .allowsTightening(true)
                     .padding(.vertical)
             }
             
@@ -51,6 +53,12 @@ struct SummaryView: View {
             }) {
                 Text("Add Entry")
                     .font(.system(size: 20, weight: Font.Weight.regular, design: Font.Design.rounded))
+            }.sheet(isPresented: $globalState.showAddView) {
+                if self.globalState.preferredUnit == PreferredUnit.fluidOunces {
+                    AddOuncesView(isPresented: self.$globalState.showAddView)
+                } else {
+                    AddMillilitersView(isPresented: self.$globalState.showAddView)
+                }
             }
         }.onAppear() {
             guard HKHealthStore.isHealthDataAvailable() else {
@@ -94,13 +102,18 @@ struct SummaryView: View {
             }
         }.alert(isPresented: $globalState.showError) {
             Alert(title: Text("HealthKit Error"), message: Text(globalState.errorMessage), dismissButton: .default(Text("OK")))
-        }.sheet(isPresented: $globalState.showAddView) {
-            if self.globalState.preferredUnit == PreferredUnit.fluidOunces {
-                AddOuncesView(isPresented: self.$globalState.showAddView)
-            } else {
-                AddMillilitersView(isPresented: self.$globalState.showAddView)
-            }
         }.contextMenu {
+            Button(action: {
+                self.globalState.showGoalEntry = true
+            }) {
+                Text("Goal ")
+            }.sheet(isPresented: $globalState.showGoalEntry) {
+                if self.globalState.preferredUnit == PreferredUnit.fluidOunces {
+                    GoalOuncesView(isPresented: self.$globalState.showGoalEntry, goalMilliliters: self.$globalState.goalMilliliters)
+                } else {
+                    GoalMillilitersView(isPresented: self.$globalState.showGoalEntry, goalMilliliters: self.$globalState.goalMilliliters)
+                }
+            }
             Button(action: {
                 self.globalState.preferredUnit = PreferredUnit.milliliters
             }) {

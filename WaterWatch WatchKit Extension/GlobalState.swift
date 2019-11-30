@@ -16,10 +16,16 @@ enum PreferredUnit: Int {
 class GlobalState: ObservableObject {
     @Published var showAddView: Bool
     @Published var showError: Bool
+    @Published var showGoalEntry: Bool
     @Published var dailySummary: Summary
     @Published var preferredUnit: PreferredUnit {
         didSet {
             UserDefaults.standard.set(preferredUnit.rawValue, forKey: "UDK_preferredUnit")
+        }
+    }
+    @Published var goalMilliliters: Int {
+        didSet {
+            UserDefaults.standard.set(goalMilliliters, forKey: "UDK_goal")
         }
     }
 
@@ -33,7 +39,9 @@ class GlobalState: ObservableObject {
         errorMessage = ""
         showAddView = false
         showError = false
+        showGoalEntry = false
         preferredUnit = .milliliters
+        goalMilliliters = 3000
         
         let savedCount = UserDefaults.standard.integer(forKey: "UDKey_entryCount")
         let lastUpdated = UserDefaults.standard.object(forKey: "") as? Date ?? Date.distantPast
@@ -52,6 +60,11 @@ class GlobalState: ObservableObject {
         let savedUnitRawValue = UserDefaults.standard.integer(forKey: "UDK_preferredUnit")
         if let savedUnit = PreferredUnit(rawValue: savedUnitRawValue) {
             preferredUnit = savedUnit
+        }
+        
+        let savedGoalMilliliters = UserDefaults.standard.integer(forKey: "UDK_goal")
+        if savedGoalMilliliters > 0 {
+            goalMilliliters = savedGoalMilliliters
         }
     }
 }

@@ -53,7 +53,11 @@ class HealthDataStore {
                         return result
                     }
                 }
-                let percentOfGoal = sum / 3000
+                var goal = UserDefaults.standard.integer(forKey: "UDK_goal")
+                if goal == 0 {
+                    goal = 3000
+                }
+                let percentOfGoal = sum / Double(goal)
                 
                 let summary: Summary
                 let lastUpdated = UserDefaults.standard.object(forKey: "UDK_lastUpdated") as? Date ?? Date.distantPast
