@@ -20,6 +20,11 @@ struct HomeView: View {
         return formatter
     }()
     
+    var progressPercentage: CGFloat {
+        let goalPercentage = CGFloat(self.globalState.dailySummary.percentOfGoal)
+        return min(1.0, goalPercentage)
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("\(globalState.dailySummary.percentOfGoal * 100, specifier: "%.0f")%")
@@ -43,7 +48,7 @@ struct HomeView: View {
                         .frame(width: geometry.size.width, height: 12.0)
                         .foregroundColor(Color.white)
                     Capsule(style: .continuous)
-                        .frame(width: geometry.size.width * 0.5, height: 12.0)
+                        .frame(width: geometry.size.width * self.progressPercentage, height: 12.0)
                         .foregroundColor(Color.blue)
                 }
             }
