@@ -19,7 +19,7 @@ struct GoalMillilitersView: View {
                 .padding(.all, 8.0)
                 .font(.system(size: 28, weight: Font.Weight.semibold, design: Font.Design.rounded))
                 .focusable(true)
-                .digitalCrownRotation($sampleSize, from: 1000.0, through: 4000.0, by: 25.0, sensitivity: .medium, isContinuous: false, isHapticFeedbackEnabled: true)
+                .digitalCrownRotation($sampleSize, from: 1000.0, through: 4000.0, by: 100.0, sensitivity: .high, isContinuous: false, isHapticFeedbackEnabled: true)
             Button(action: {
                 self.goalMilliliters = Int(self.sampleSize)
                 self.isPresented = false
