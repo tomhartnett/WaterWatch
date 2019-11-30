@@ -11,6 +11,7 @@
 		E21198B5238ABA5E0088F5FD /* AddMillilitersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21198B4238ABA5E0088F5FD /* AddMillilitersView.swift */; };
 		E21B974023902689002265AB /* GoalMillilitersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B973F23902689002265AB /* GoalMillilitersView.swift */; };
 		E21B97422392A95E002265AB /* GoalOuncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B97412392A95E002265AB /* GoalOuncesView.swift */; };
+		E21B97442392FDED002265AB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B97432392FDED002265AB /* HomeView.swift */; };
 		E2545188238AD656003D6843 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2545187238AD656003D6843 /* GlobalState.swift */; };
 		E2545190238B5646003D6843 /* AddOuncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254518F238B5646003D6843 /* AddOuncesView.swift */; };
 		E2923F8123900E13001F6CB7 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */; };
@@ -75,6 +76,7 @@
 		E21198B4238ABA5E0088F5FD /* AddMillilitersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMillilitersView.swift; sourceTree = "<group>"; };
 		E21B973F23902689002265AB /* GoalMillilitersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalMillilitersView.swift; sourceTree = "<group>"; };
 		E21B97412392A95E002265AB /* GoalOuncesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalOuncesView.swift; sourceTree = "<group>"; };
+		E21B97432392FDED002265AB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2545187238AD656003D6843 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalState.swift; path = "WaterWatch WatchKit Extension/GlobalState.swift"; sourceTree = SOURCE_ROOT; };
 		E254518A238AF37B003D6843 /* complication.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = complication.PNG; sourceTree = "<group>"; };
 		E254518B238AF37B003D6843 /* addView.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addView.PNG; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				E254518F238B5646003D6843 /* AddOuncesView.swift */,
 				E21B973F23902689002265AB /* GoalMillilitersView.swift */,
 				E21B97412392A95E002265AB /* GoalOuncesView.swift */,
+				E21B97432392FDED002265AB /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,13 +183,13 @@
 				E2B92E03238739160015676D /* HostingController.swift */,
 				E2B92E05238739160015676D /* ExtensionDelegate.swift */,
 				E2B92E07238739160015676D /* ComplicationController.swift */,
+				E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */,
 				E2545186238AC0D3003D6843 /* Models */,
 				E21198B6238ABF860088F5FD /* Views */,
 				E2B92E1E238784240015676D /* WaterWatch WatchKit Extension.entitlements */,
 				E2B92E09238739170015676D /* Assets.xcassets */,
 				E2B92E0E238739170015676D /* Info.plist */,
 				E2B92E0B238739170015676D /* Preview Content */,
-				E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */,
 			);
 			path = "WaterWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			files = (
 				E21198B5238ABA5E0088F5FD /* AddMillilitersView.swift in Sources */,
 				E2B92E04238739160015676D /* HostingController.swift in Sources */,
+				E21B97442392FDED002265AB /* HomeView.swift in Sources */,
 				E2B92E08238739160015676D /* ComplicationController.swift in Sources */,
 				E2B92E23238820710015676D /* HealthDataStore.swift in Sources */,
 				E2B92E02238739160015676D /* SummaryView.swift in Sources */,

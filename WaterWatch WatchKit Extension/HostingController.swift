@@ -10,8 +10,8 @@ import WatchKit
 import Foundation
 import SwiftUI
 
-class HostingController: WKHostingController<SummaryView> {
-    override var body: SummaryView {
-        return SummaryView()
+class HostingController: WKHostingController<HomeView> {
+    override var body: HomeView {
+        return HomeView()
     }
 }

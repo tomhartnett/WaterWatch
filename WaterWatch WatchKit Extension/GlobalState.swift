@@ -35,6 +35,11 @@ class GlobalState: ObservableObject {
         }
     }
     
+    var goalFluidOunces: Int {
+        let measurement = Measurement(value: Double(goalMilliliters), unit: UnitVolume.milliliters)
+        return Int(measurement.converted(to: .fluidOunces).value)
+    }
+    
     init() {
         errorMessage = ""
         showAddView = false
