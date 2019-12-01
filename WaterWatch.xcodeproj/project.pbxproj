@@ -19,7 +19,6 @@
 		E2B92DF4238739150015676D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF2238739150015676D /* Interface.storyboard */; };
 		E2B92DF6238739160015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF5238739160015676D /* Assets.xcassets */; };
 		E2B92DFD238739160015676D /* WaterWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2B92DFC238739160015676D /* WaterWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E2B92E02238739160015676D /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E01238739160015676D /* SummaryView.swift */; };
 		E2B92E04238739160015676D /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E03238739160015676D /* HostingController.swift */; };
 		E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E05238739160015676D /* ExtensionDelegate.swift */; };
 		E2B92E08238739160015676D /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E07238739160015676D /* ComplicationController.swift */; };
@@ -89,7 +88,6 @@
 		E2B92DF5238739160015676D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B92DF7238739160015676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B92DFC238739160015676D /* WaterWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WaterWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2B92E01238739160015676D /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		E2B92E03238739160015676D /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		E2B92E05238739160015676D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		E2B92E07238739160015676D /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 		E21198B6238ABF860088F5FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E2B92E01238739160015676D /* SummaryView.swift */,
 				E21198B4238ABA5E0088F5FD /* AddMillilitersView.swift */,
 				E254518F238B5646003D6843 /* AddOuncesView.swift */,
 				E21B973F23902689002265AB /* GoalMillilitersView.swift */,
@@ -343,7 +340,6 @@
 				E21B97442392FDED002265AB /* HomeView.swift in Sources */,
 				E2B92E08238739160015676D /* ComplicationController.swift in Sources */,
 				E2B92E23238820710015676D /* HealthDataStore.swift in Sources */,
-				E2B92E02238739160015676D /* SummaryView.swift in Sources */,
 				E21B974023902689002265AB /* GoalMillilitersView.swift in Sources */,
 				E21B97422392A95E002265AB /* GoalOuncesView.swift in Sources */,
 				E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */,

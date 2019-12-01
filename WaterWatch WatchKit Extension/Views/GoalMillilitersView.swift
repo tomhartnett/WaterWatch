@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GoalMillilitersView: View {
     @Binding var isPresented: Bool
-    @Binding var goalMilliliters: Int
+    @Binding var goalMilliliters: Double
     @State private var sampleSize = 3000.0
     
     var body: some View {
@@ -21,14 +21,14 @@ struct GoalMillilitersView: View {
                 .focusable(true)
                 .digitalCrownRotation($sampleSize, from: 1000.0, through: 4000.0, by: 100.0, sensitivity: .high, isContinuous: false, isHapticFeedbackEnabled: true)
             Button(action: {
-                self.goalMilliliters = Int(self.sampleSize)
+                self.goalMilliliters = self.sampleSize
                 self.isPresented = false
             }) {
                 Text("Set")
                     .font(.system(size: 20, weight: Font.Weight.regular, design: Font.Design.rounded))
             }
         }.onAppear() {
-            self.sampleSize = Double(self.goalMilliliters)
+            self.sampleSize = self.goalMilliliters
         }
     }
 }

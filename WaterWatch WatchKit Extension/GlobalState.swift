@@ -23,7 +23,7 @@ class GlobalState: ObservableObject {
             UserDefaults.standard.set(preferredUnit.rawValue, forKey: "UDK_preferredUnit")
         }
     }
-    @Published var goalMilliliters: Int {
+    @Published var goalMilliliters: Double {
         didSet {
             UserDefaults.standard.set(goalMilliliters, forKey: "UDK_goal")
         }
@@ -35,9 +35,9 @@ class GlobalState: ObservableObject {
         }
     }
     
-    var goalFluidOunces: Int {
-        let measurement = Measurement(value: Double(goalMilliliters), unit: UnitVolume.milliliters)
-        return Int(measurement.converted(to: .fluidOunces).value)
+    var goalFluidOunces: Double {
+        let measurement = Measurement(value: goalMilliliters, unit: UnitVolume.milliliters)
+        return measurement.converted(to: .fluidOunces).value
     }
     
     init() {
@@ -46,7 +46,7 @@ class GlobalState: ObservableObject {
         showError = false
         showGoalEntry = false
         preferredUnit = .milliliters
-        goalMilliliters = 3000
+        goalMilliliters = 3000.0
         
         let savedCount = UserDefaults.standard.integer(forKey: "UDKey_entryCount")
         let lastUpdated = UserDefaults.standard.object(forKey: "") as? Date ?? Date.distantPast
@@ -67,7 +67,7 @@ class GlobalState: ObservableObject {
             preferredUnit = savedUnit
         }
         
-        let savedGoalMilliliters = UserDefaults.standard.integer(forKey: "UDK_goal")
+        let savedGoalMilliliters = UserDefaults.standard.double(forKey: "UDK_goal")
         if savedGoalMilliliters > 0 {
             goalMilliliters = savedGoalMilliliters
         }

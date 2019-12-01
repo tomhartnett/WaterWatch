@@ -31,13 +31,13 @@ struct HomeView: View {
                 .font(.title)
             if globalState.preferredUnit == PreferredUnit.fluidOunces {
                 HStack {
-                    Text("\(globalState.dailySummary.volumeFluidOunces, specifier: "%.0f") / \(globalState.goalFluidOunces) fl oz")
+                    Text("\(globalState.dailySummary.volumeFluidOunces, specifier: "%.0f") / \(globalState.goalFluidOunces, specifier: "%.0f") fl oz")
                     Spacer()
                     Text("\(globalState.dailySummary.entryCount)💧")
                 }
             } else {
                 HStack {
-                    Text("\(globalState.dailySummary.volumeMilliliters, specifier: "%.0f") / \(globalState.goalMilliliters) mL")
+                    Text("\(globalState.dailySummary.volumeMilliliters, specifier: "%.0f") / \(globalState.goalMilliliters, specifier: "%.0f") mL")
                     Spacer()
                     Text("\(globalState.dailySummary.entryCount)💧")
                 }
