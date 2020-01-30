@@ -56,8 +56,16 @@ struct HomeView: View {
             Text("Last: \(globalState.dailySummary.date, formatter: self.timeFormatter)")
                 .font(.caption)
             
-            List {
-                
+            Button(action: {
+                self.globalState.showAddView.toggle()
+            }) {
+                Text("Add")
+            }.sheet(isPresented: $globalState.showAddView) {
+                if self.globalState.preferredUnit == PreferredUnit.fluidOunces {
+                    AddOuncesView(isPresented: self.$globalState.showAddView)
+                } else {
+                    AddMillilitersView(isPresented: self.$globalState.showAddView)
+                }
             }
         }.onAppear() {
             guard HKHealthStore.isHealthDataAvailable() else {
