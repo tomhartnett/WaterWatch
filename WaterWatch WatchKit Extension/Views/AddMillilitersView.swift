@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct AddMillilitersView: View {
+    @EnvironmentObject var healthStore: HealthKitStore
     @Binding var isPresented: Bool
     @State private var sampleSize = 355.0
     
@@ -32,7 +33,7 @@ struct AddMillilitersView: View {
                 }
             }
             Button(action: {
-                HealthDataStore().saveWaterSample(sampleSizeMilliliters: self.sampleSize, date: Date())
+                healthStore.saveWaterSample(sampleSizeMilliliters: self.sampleSize, date: Date())
                 self.isPresented = false
             }) {
                 Text("Add")

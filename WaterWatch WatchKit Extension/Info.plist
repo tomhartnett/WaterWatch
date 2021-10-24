@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>Health update usage description</string>
+	<string>WaterWatch will save your daily water intake to HealthKit.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Health share usage description</string>
+	<string>WatchWatch will display your daily water intake from HealthKit.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

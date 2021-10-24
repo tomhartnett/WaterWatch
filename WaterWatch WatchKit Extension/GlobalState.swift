@@ -17,7 +17,6 @@ class GlobalState: ObservableObject {
     @Published var showAddView: Bool
     @Published var showError: Bool
     @Published var showGoalEntry: Bool
-    @Published var dailySummary: Summary
     @Published var preferredUnit: PreferredUnit {
         didSet {
             UserDefaults.standard.set(preferredUnit.rawValue, forKey: "UDK_preferredUnit")
@@ -47,20 +46,6 @@ class GlobalState: ObservableObject {
         showGoalEntry = false
         preferredUnit = .milliliters
         goalMilliliters = 3000.0
-        
-        let savedCount = UserDefaults.standard.integer(forKey: "UDKey_entryCount")
-        let lastUpdated = UserDefaults.standard.object(forKey: "") as? Date ?? Date.distantPast
-        
-        if savedCount > 0 && Calendar.current.isDateInToday(lastUpdated) {
-            let volume = UserDefaults.standard.double(forKey: "UDKey_currentVolume")
-            let goal = UserDefaults.standard.double(forKey: "UDK_percentOfGoal")
-            dailySummary = Summary(date: lastUpdated, volumeMilliliters: volume, percentOfGoal: goal, entryCount: savedCount)
-        } else {
-            dailySummary = Summary(date: Calendar.current.startOfDay(for: Date()),
-            volumeMilliliters: 0,
-            percentOfGoal: 0,
-            entryCount: 0)
-        }
         
         let savedUnitRawValue = UserDefaults.standard.integer(forKey: "UDK_preferredUnit")
         if let savedUnit = PreferredUnit(rawValue: savedUnitRawValue) {

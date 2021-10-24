@@ -11,6 +11,8 @@ import Foundation
 import SwiftUI
 
 class HostingController: WKHostingController<HomeView> {
+    @StateObject var healthStore = HealthKitStore()
+
     override var body: HomeView {
         return HomeView()
     }

@@ -12,6 +12,9 @@
 		E21B974023902689002265AB /* GoalMillilitersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B973F23902689002265AB /* GoalMillilitersView.swift */; };
 		E21B97422392A95E002265AB /* GoalOuncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B97412392A95E002265AB /* GoalOuncesView.swift */; };
 		E21B97442392FDED002265AB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B97432392FDED002265AB /* HomeView.swift */; };
+		E21D217D27259A64003A6FB9 /* HealthKitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D217C27259A63003A6FB9 /* HealthKitStore.swift */; };
+		E2322AEC272497BE008FD061 /* HealthKitAuthBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2322AEA272497BE008FD061 /* HealthKitAuthBannerView.swift */; };
+		E2322AED272497BE008FD061 /* HealthKitAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2322AEB272497BE008FD061 /* HealthKitAuthView.swift */; };
 		E2545188238AD656003D6843 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2545187238AD656003D6843 /* GlobalState.swift */; };
 		E2545190238B5646003D6843 /* AddOuncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254518F238B5646003D6843 /* AddOuncesView.swift */; };
 		E2923F8123900E13001F6CB7 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */; };
@@ -25,7 +28,6 @@
 		E2B92E0A238739170015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E09238739170015676D /* Assets.xcassets */; };
 		E2B92E0D238739170015676D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E0C238739170015676D /* Preview Assets.xcassets */; };
 		E2B92E21238784240015676D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B92E20238784240015676D /* HealthKit.framework */; };
-		E2B92E23238820710015676D /* HealthDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E22238820710015676D /* HealthDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,10 +78,10 @@
 		E21B973F23902689002265AB /* GoalMillilitersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalMillilitersView.swift; sourceTree = "<group>"; };
 		E21B97412392A95E002265AB /* GoalOuncesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalOuncesView.swift; sourceTree = "<group>"; };
 		E21B97432392FDED002265AB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E21D217C27259A63003A6FB9 /* HealthKitStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitStore.swift; sourceTree = "<group>"; };
+		E2322AEA272497BE008FD061 /* HealthKitAuthBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitAuthBannerView.swift; sourceTree = "<group>"; };
+		E2322AEB272497BE008FD061 /* HealthKitAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitAuthView.swift; sourceTree = "<group>"; };
 		E2545187238AD656003D6843 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalState.swift; path = "WaterWatch WatchKit Extension/GlobalState.swift"; sourceTree = SOURCE_ROOT; };
-		E254518A238AF37B003D6843 /* complication.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = complication.PNG; sourceTree = "<group>"; };
-		E254518B238AF37B003D6843 /* addView.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addView.PNG; sourceTree = "<group>"; };
-		E254518C238AF37B003D6843 /* summaryView.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summaryView.PNG; sourceTree = "<group>"; };
 		E254518F238B5646003D6843 /* AddOuncesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOuncesView.swift; sourceTree = "<group>"; };
 		E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		E2B92DE9238739140015676D /* WaterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +98,6 @@
 		E2B92E0E238739170015676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B92E1E238784240015676D /* WaterWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WaterWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		E2B92E20238784240015676D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
-		E2B92E22238820710015676D /* HealthDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +115,8 @@
 		E21198B6238ABF860088F5FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E2322AEA272497BE008FD061 /* HealthKitAuthBannerView.swift */,
+				E2322AEB272497BE008FD061 /* HealthKitAuthView.swift */,
 				E21198B4238ABA5E0088F5FD /* AddMillilitersView.swift */,
 				E254518F238B5646003D6843 /* AddOuncesView.swift */,
 				E21B973F23902689002265AB /* GoalMillilitersView.swift */,
@@ -132,20 +135,9 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E2545189238AF362003D6843 /* Screenshots */ = {
-			isa = PBXGroup;
-			children = (
-				E254518B238AF37B003D6843 /* addView.PNG */,
-				E254518A238AF37B003D6843 /* complication.PNG */,
-				E254518C238AF37B003D6843 /* summaryView.PNG */,
-			);
-			path = Screenshots;
-			sourceTree = "<group>";
-		};
 		E2B92DE2238739140015676D = {
 			isa = PBXGroup;
 			children = (
-				E2545189238AF362003D6843 /* Screenshots */,
 				E2B92DF1238739150015676D /* WaterWatch WatchKit App */,
 				E2B92E00238739160015676D /* WaterWatch WatchKit Extension */,
 				E2B92DEA238739140015676D /* Products */,
@@ -176,7 +168,7 @@
 		E2B92E00238739160015676D /* WaterWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				E2B92E22238820710015676D /* HealthDataStore.swift */,
+				E21D217C27259A63003A6FB9 /* HealthKitStore.swift */,
 				E2B92E03238739160015676D /* HostingController.swift */,
 				E2B92E05238739160015676D /* ExtensionDelegate.swift */,
 				E2B92E07238739160015676D /* ComplicationController.swift */,
@@ -268,7 +260,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Sleekible LLC";
 				TargetAttributes = {
 					E2B92DE8238739140015676D = {
@@ -339,13 +331,15 @@
 				E2B92E04238739160015676D /* HostingController.swift in Sources */,
 				E21B97442392FDED002265AB /* HomeView.swift in Sources */,
 				E2B92E08238739160015676D /* ComplicationController.swift in Sources */,
-				E2B92E23238820710015676D /* HealthDataStore.swift in Sources */,
 				E21B974023902689002265AB /* GoalMillilitersView.swift in Sources */,
 				E21B97422392A95E002265AB /* GoalOuncesView.swift in Sources */,
 				E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */,
 				E2545190238B5646003D6843 /* AddOuncesView.swift in Sources */,
 				E2545188238AD656003D6843 /* GlobalState.swift in Sources */,
 				E21198B1238AB97A0088F5FD /* Summary.swift in Sources */,
+				E21D217D27259A64003A6FB9 /* HealthKitStore.swift in Sources */,
+				E2322AED272497BE008FD061 /* HealthKitAuthView.swift in Sources */,
+				E2322AEC272497BE008FD061 /* HealthKitAuthBannerView.swift in Sources */,
 				E2923F8123900E13001F6CB7 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +397,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -462,6 +457,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -510,7 +506,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
 			};
 			name = Debug;
 		};
@@ -535,7 +530,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
 			};
 			name = Release;
 		};

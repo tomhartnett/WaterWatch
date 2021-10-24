@@ -13,6 +13,25 @@ struct Summary {
     var volumeMilliliters: Double
     var percentOfGoal: Double
     var entryCount: Int
+
+    init() {
+        date = Date()
+        volumeMilliliters = 0
+        percentOfGoal = 0
+        entryCount = 0
+    }
+
+    init(
+        date: Date,
+        volumeMilliliters: Double,
+        percentOfGoal: Double,
+        entryCount: Int
+    ) {
+        self.date = date
+        self.volumeMilliliters = volumeMilliliters
+        self.percentOfGoal = percentOfGoal
+        self.entryCount = entryCount
+    }
 }
 
 extension Summary {

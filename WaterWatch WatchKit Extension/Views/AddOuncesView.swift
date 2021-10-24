@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct AddOuncesView: View {
+    @EnvironmentObject var healthStore: HealthKitStore
     @Binding var isPresented: Bool
     @State private var sampleSize = 12.0
     
@@ -39,7 +40,7 @@ struct AddOuncesView: View {
             }
             Button(action: {
                 if self.sampleSize > 0 {
-                    HealthDataStore().saveWaterSample(sampleSizeFluidOunces: self.sampleSize, date: Date())
+                    healthStore.saveWaterSample(sampleSizeFluidOunces: self.sampleSize, date: Date())
                 }
                 self.isPresented = false
             }) {
