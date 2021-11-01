@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct GoalOuncesView: View {
-    @Binding var isPresented: Bool
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var goalMilliliters: Double
     @State private var sampleSize = 100.0
     
@@ -24,7 +24,7 @@ struct GoalOuncesView: View {
                 let measurement = Measurement(value: self.sampleSize, unit: UnitVolume.fluidOunces)
                 let milliliters = measurement.converted(to: .milliliters).value
                 self.goalMilliliters = milliliters
-                self.isPresented = false
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Set")
                     .font(.system(size: 20, weight: Font.Weight.regular, design: Font.Design.rounded))
@@ -39,7 +39,7 @@ struct GoalOuncesView: View {
 
 struct GoalOuncesView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalOuncesView(isPresented: .constant(true), goalMilliliters: .constant(3000))
+        GoalOuncesView(goalMilliliters: .constant(3000))
     }
 }
 

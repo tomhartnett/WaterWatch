@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct AddOuncesView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var healthStore: HealthKitStore
-    @Binding var isPresented: Bool
     @State private var sampleSize = 12.0
     
     var body: some View {
@@ -39,10 +39,8 @@ struct AddOuncesView: View {
                 }
             }
             Button(action: {
-                if self.sampleSize > 0 {
-                    healthStore.saveWaterSample(sampleSizeFluidOunces: self.sampleSize, date: Date())
-                }
-                self.isPresented = false
+                healthStore.saveWaterSample(sampleSizeFluidOunces: self.sampleSize, date: Date())
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Add")
                     .font(.system(size: 20, weight: Font.Weight.regular, design: Font.Design.rounded))
@@ -54,6 +52,6 @@ struct AddOuncesView: View {
 
 struct AddOuncesView_Previews: PreviewProvider {
     static var previews: some View {
-        AddOuncesView(isPresented: .constant(true))
+        AddOuncesView()
     }
 }

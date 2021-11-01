@@ -28,6 +28,7 @@
 		E2B92E0A238739170015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E09238739170015676D /* Assets.xcassets */; };
 		E2B92E0D238739170015676D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E0C238739170015676D /* Preview Assets.xcassets */; };
 		E2B92E21238784240015676D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B92E20238784240015676D /* HealthKit.framework */; };
+		E2F73C96273012020002CF45 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F73C95273012020002CF45 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		E2B92E0E238739170015676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B92E1E238784240015676D /* WaterWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WaterWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		E2B92E20238784240015676D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		E2F73C95273012020002CF45 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				E21B973F23902689002265AB /* GoalMillilitersView.swift */,
 				E21B97412392A95E002265AB /* GoalOuncesView.swift */,
 				E21B97432392FDED002265AB /* HomeView.swift */,
+				E2F73C95273012020002CF45 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F73C96273012020002CF45 /* SettingsView.swift in Sources */,
 				E21198B5238ABA5E0088F5FD /* AddMillilitersView.swift in Sources */,
 				E2B92E04238739160015676D /* HostingController.swift in Sources */,
 				E21B97442392FDED002265AB /* HomeView.swift in Sources */,

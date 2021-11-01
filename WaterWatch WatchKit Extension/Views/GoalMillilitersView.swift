@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct GoalMillilitersView: View {
-    @Binding var isPresented: Bool
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var goalMilliliters: Double
     @State private var sampleSize = 3000.0
     
@@ -22,7 +22,7 @@ struct GoalMillilitersView: View {
                 .digitalCrownRotation($sampleSize, from: 1000.0, through: 4000.0, by: 100.0, sensitivity: .high, isContinuous: false, isHapticFeedbackEnabled: true)
             Button(action: {
                 self.goalMilliliters = self.sampleSize
-                self.isPresented = false
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Set")
                     .font(.system(size: 20, weight: Font.Weight.regular, design: Font.Design.rounded))
@@ -35,7 +35,7 @@ struct GoalMillilitersView: View {
 
 struct GoalMillilitersView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalMillilitersView(isPresented: .constant(true), goalMilliliters: .constant(3000))
+        GoalMillilitersView(goalMilliliters: .constant(3000))
     }
 }
 

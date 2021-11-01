@@ -128,6 +128,10 @@ class HealthKitStore: ObservableObject {
     }
 
     func saveWaterSample(sampleSizeMilliliters: Double, date: Date) {
+        guard sampleSizeMilliliters > 0 else {
+            return
+        }
+
         guard let sampleType = HKObjectType.quantityType(forIdentifier: .dietaryWater) else {
             return
         }

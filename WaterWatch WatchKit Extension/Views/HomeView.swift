@@ -9,10 +9,27 @@
 import HealthKit
 import SwiftUI
 
+enum HomeViewSheet: Identifiable {
+    case addMilliliters
+    case addOunces
+    case healthKitAuthorization
+
+    var id: Int {
+        switch self {
+        case .addMilliliters:
+            return 0
+        case .addOunces:
+            return 1
+        case .healthKitAuthorization:
+            return 2
+        }
+    }
+}
+
 struct HomeView: View {
     @StateObject var globalState = GlobalState()
     @StateObject var healthStore = HealthKitStore()
-    @State private var isPresentingHealthKitAuthView = false
+    @State private var selectedSheet: HomeViewSheet? = nil
     
     let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -28,85 +45,80 @@ struct HomeView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading) {
 
-                HealthKitAuthBannerView(status: healthStore.authorizationStatus)
-                    .onTapGesture {
-                        isPresentingHealthKitAuthView.toggle()
-                    }
+                    HealthKitAuthBannerView(status: healthStore.authorizationStatus)
+                        .onTapGesture {
+                            selectedSheet = .healthKitAuthorization
+                        }
 
-                Text("\(healthStore.summary.percentOfGoal * 100, specifier: "%.0f")%")
-                    .font(.title)
-                if globalState.preferredUnit == PreferredUnit.fluidOunces {
-                    HStack {
-                        Text("\(healthStore.summary.volumeFluidOunces, specifier: "%.0f") / \(globalState.goalFluidOunces, specifier: "%.0f") fl oz")
-                        Spacer()
-                        Text("\(healthStore.summary.entryCount)💧")
-                    }
-                } else {
-                    HStack {
-                        Text("\(healthStore.summary.volumeMilliliters, specifier: "%.0f") / \(globalState.goalMilliliters, specifier: "%.0f") mL")
-                        Spacer()
-                        Text("\(healthStore.summary.entryCount)💧")
-                    }
-                }
-                GeometryReader { geometry in
-                    ZStack(alignment: .leading) {
-                        Capsule(style: .continuous)
-                            .frame(width: geometry.size.width, height: 12.0)
-                            .foregroundColor(Color.white)
-                        Capsule(style: .continuous)
-                            .frame(width: geometry.size.width * self.progressPercentage, height: 12.0)
-                            .foregroundColor(Color.blue)
-                    }
-                }
-
-                Text("Last: \(healthStore.summary.date, formatter: self.timeFormatter)")
-                    .font(.caption)
-
-                Button(action: {
-                    self.globalState.showAddView.toggle()
-                }) {
-                    Text("Add")
-                }.sheet(isPresented: $globalState.showAddView) {
-                    if self.globalState.preferredUnit == PreferredUnit.fluidOunces {
-                        AddOuncesView(isPresented: self.$globalState.showAddView)
-                            .environmentObject(healthStore)
+                    Text("\(healthStore.summary.percentOfGoal * 100, specifier: "%.0f")%")
+                        .font(.title)
+                    if globalState.preferredUnit == PreferredUnit.fluidOunces {
+                        HStack {
+                            Text("\(healthStore.summary.volumeFluidOunces, specifier: "%.0f") / \(globalState.goalFluidOunces, specifier: "%.0f") fl oz")
+                            Spacer()
+                            Text("\(healthStore.summary.entryCount)💧")
+                        }
                     } else {
-                        AddMillilitersView(isPresented: self.$globalState.showAddView)
-                            .environmentObject(healthStore)
+                        HStack {
+                            Text("\(healthStore.summary.volumeMilliliters, specifier: "%.0f") / \(globalState.goalMilliliters, specifier: "%.0f") mL")
+                            Spacer()
+                            Text("\(healthStore.summary.entryCount)💧")
+                        }
+                    }
+                    GeometryReader { geometry in
+                        ZStack(alignment: .leading) {
+                            Capsule(style: .continuous)
+                                .frame(width: geometry.size.width, height: 12.0)
+                                .foregroundColor(Color.white)
+                            Capsule(style: .continuous)
+                                .frame(width: geometry.size.width * self.progressPercentage, height: 12.0)
+                                .foregroundColor(Color.blue)
+                        }
+                    }
+
+                    Text("Last: \(healthStore.summary.date, formatter: self.timeFormatter)")
+                        .font(.caption)
+
+                    Button(action: {
+                        selectedSheet = globalState.preferredUnit == .milliliters ? .addMilliliters : .addOunces
+                    }) {
+                        HStack {
+                            Image(systemName: "plus.circle")
+                            Text("Add")
+                            Spacer()
+                        }
+                        .padding(.leading, 15)
+                    }
+                    .disabled(healthStore.authorizationStatus != .sharingAuthorized)
+
+                    NavigationLink(destination: SettingsView().environmentObject(globalState)) {
+                        HStack {
+                            Image(systemName: "gearshape")
+                            Text("Settings")
+                            Spacer()
+                        }
+                        .padding(.leading, 15)
+                    }
+                    .padding(.top)
+
+                }.onAppear() {
+                    healthStore.getAuthorizationStatus()
+                    healthStore.getWaterForCurrentDay()
+                }
+                .sheet(item: $selectedSheet) { sheet in
+                    switch sheet {
+                    case .addMilliliters:
+                        AddMillilitersView().environmentObject(healthStore)
+                    case .addOunces:
+                        AddOuncesView().environmentObject(healthStore)
+                    case .healthKitAuthorization:
+                        HealthKitAuthView().environmentObject(healthStore)
                     }
                 }
-                .disabled(healthStore.authorizationStatus != .sharingAuthorized)
-            }.onAppear() {
-                healthStore.getAuthorizationStatus()
-                healthStore.getWaterForCurrentDay()
-            }.contextMenu {
-                Button(action: {
-                    self.globalState.showGoalEntry = true
-                }) {
-                    Text("Goal ")
-                }.sheet(isPresented: $globalState.showGoalEntry) {
-                    if self.globalState.preferredUnit == PreferredUnit.fluidOunces {
-                        GoalOuncesView(isPresented: self.$globalState.showGoalEntry, goalMilliliters: self.$globalState.goalMilliliters)
-                    } else {
-                        GoalMillilitersView(isPresented: self.$globalState.showGoalEntry, goalMilliliters: self.$globalState.goalMilliliters)
-                    }
-                }
-                Button(action: {
-                    self.globalState.preferredUnit = PreferredUnit.milliliters
-                }) {
-                    Text("Liters (mL)")
-                }
-                Button(action: {
-                    self.globalState.preferredUnit = PreferredUnit.fluidOunces
-                }) {
-                    Text("Fluid Ounces (fl oz)")
-                }
-            }
-            .sheet(isPresented: $isPresentingHealthKitAuthView) {
-                HealthKitAuthView().environmentObject(healthStore)
             }
         }
     }
