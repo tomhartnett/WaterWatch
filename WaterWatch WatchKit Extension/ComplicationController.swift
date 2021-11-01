@@ -19,16 +19,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                                       displayName: "WaterWatch",
                                       supportedFamilies: [
                                         .modularSmall,
-                                        .modularLarge,
-                                        .utilitarianSmall,
-                                        .utilitarianSmallFlat,
-                                        .utilitarianLarge,
                                         .circularSmall,
-                                        .extraLarge,
                                         .graphicCorner,
                                         .graphicBezel,
-                                        .graphicCircular,
-                                        .graphicRectangular
+                                        .graphicCircular
                                       ])
         ]
 
@@ -54,8 +48,70 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     // MARK: - Timeline Population
-    
-    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+
+    func getTemplate(complication: CLKComplication,
+                     fillFraction: Float,
+                     displayPercentOfGoal: String,
+                     displayVolume: String) -> CLKComplicationTemplate? {
+
+        var template: CLKComplicationTemplate?
+
+        switch complication.family {
+        case .graphicCircular:
+            template = CLKComplicationTemplateGraphicCircularClosedGaugeText(
+                gaugeProvider: CLKSimpleGaugeProvider(style: .fill,
+                                                      gaugeColor: UIColor.nowPlayingBlue(),
+                                                      fillFraction: fillFraction),
+                centerTextProvider: CLKSimpleTextProvider(text: "💧")
+            )
+
+        case .graphicCorner:
+            let innerTextProvider = CLKSimpleTextProvider(text: "WATER: \(displayPercentOfGoal)")
+            innerTextProvider.tintColor = UIColor.nowPlayingBlue()
+            let outerTextProvider = CLKSimpleTextProvider(text: "\(displayVolume)")
+            outerTextProvider.tintColor = UIColor.nowPlayingBlue()
+            template = CLKComplicationTemplateGraphicCornerStackText(
+                innerTextProvider: innerTextProvider,
+                outerTextProvider: outerTextProvider
+            )
+        case .graphicBezel:
+            let circularTemplate = CLKComplicationTemplateGraphicCircularClosedGaugeText(
+                gaugeProvider: CLKSimpleGaugeProvider(style: .fill,
+                                                      gaugeColor: UIColor.nowPlayingBlue(),
+                                                      fillFraction: fillFraction),
+                centerTextProvider: CLKSimpleTextProvider(text: "💧")
+            )
+
+            template = CLKComplicationTemplateGraphicBezelCircularText(
+                circularTemplate: circularTemplate,
+                textProvider: CLKSimpleTextProvider(text: "Water: \(displayVolume) - \(displayPercentOfGoal)")
+            )
+
+        case .circularSmall:
+            template = CLKComplicationTemplateCircularSmallRingText(
+                textProvider: CLKSimpleTextProvider(text: "💧"),
+                fillFraction: fillFraction,
+                ringStyle: .closed
+            )
+            template?.tintColor = UIColor.nowPlayingBlue()
+
+        case .modularSmall:
+            template = CLKComplicationTemplateModularSmallRingText(
+                textProvider: CLKSimpleTextProvider(text: "💧"),
+                fillFraction: fillFraction,
+                ringStyle: .closed
+            )
+
+        default:
+            break
+        }
+
+        return template
+    }
+
+    func getCurrentTimelineEntry(for complication: CLKComplication,
+                                 withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void)
+    {
         
         var currentVolume: Double = 0.0
         var percentOfGoal: Double = 0.0
@@ -77,60 +133,17 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         } else {
             displayVolume = String(format: "%.1f L", volumeMilliliters.converted(to: .liters).value)
         }
-        
-        switch complication.family {
-        case .graphicCircular:
-            let template = CLKComplicationTemplateGraphicCircularClosedGaugeText(
-                gaugeProvider: CLKSimpleGaugeProvider(style: .fill,
-                                                      gaugeColor: UIColor.nowPlayingBlue(),
-                                                      fillFraction: fillFraction),
-                centerTextProvider: CLKSimpleTextProvider(text: "💧")
-            )
-            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(entry)
-        case .graphicCorner:
-            let template = CLKComplicationTemplateGraphicCornerStackText(
-                innerTextProvider: CLKSimpleTextProvider(text: "WATER: \(displayPercentOfGoal)"),
-                outerTextProvider: CLKSimpleTextProvider(text: "\(displayVolume)")
-            )
-            template.innerTextProvider.tintColor = UIColor.nowPlayingBlue()
-            template.outerTextProvider.tintColor = UIColor.nowPlayingBlue()
-            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(entry)
-        case .graphicBezel:
-            let circularTemplate = CLKComplicationTemplateGraphicCircularClosedGaugeText(
-                gaugeProvider: CLKSimpleGaugeProvider(style: .fill,
-                                                      gaugeColor: UIColor.nowPlayingBlue(),
-                                                      fillFraction: fillFraction),
-                centerTextProvider: CLKSimpleTextProvider(text: "💧")
-            )
-            let template = CLKComplicationTemplateGraphicBezelCircularText(
-                circularTemplate: circularTemplate,
-                textProvider: CLKSimpleTextProvider(text: "Water: \(displayVolume) - \(displayPercentOfGoal)")
-            )
-            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(entry)
-        case .circularSmall:
-            let template = CLKComplicationTemplateCircularSmallRingText(
-                textProvider: CLKSimpleTextProvider(text: "💧"),
-                fillFraction: fillFraction,
-                ringStyle: .closed
-            )
-            template.tintColor = UIColor.nowPlayingBlue()
-            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(entry)
-        case .modularSmall:
-            let template = CLKComplicationTemplateModularSmallRingText(
-                textProvider: CLKSimpleTextProvider(text: "💧"),
-                fillFraction: fillFraction,
-                ringStyle: .closed
-            )
-            template.tintColor = UIColor.nowPlayingBlue()
-            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(entry)
-        default:
-            handler(nil)
+
+        var entry: CLKComplicationTimelineEntry?
+
+        if let template = getTemplate(complication: complication,
+                                      fillFraction: fillFraction,
+                                      displayPercentOfGoal: displayPercentOfGoal,
+                                      displayVolume: displayVolume) {
+            entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
         }
+
+        handler(entry)
     }
     
     // MARK: - Placeholder Templates
@@ -150,49 +163,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             displayVolume = "1.5 L"
         }
         
-        switch complication.family {
-        case .graphicCircular:
-            let template = CLKComplicationTemplateGraphicCircularClosedGaugeText(
-                gaugeProvider: CLKSimpleGaugeProvider(style: .fill,
-                                                      gaugeColor: UIColor.nowPlayingBlue(),
-                                                      fillFraction: fillFraction),
-                centerTextProvider: CLKSimpleTextProvider(text: "💧")
-            )
-            handler(template)
-        case .graphicCorner:
-            let template = CLKComplicationTemplateGraphicCornerStackText(
-                innerTextProvider: CLKSimpleTextProvider(text: "WATER: \(displayPercentOfGoal)"),
-                outerTextProvider: CLKSimpleTextProvider(text: "\(displayVolume)")
-            )
-            template.innerTextProvider.tintColor = UIColor.nowPlayingBlue()
-            template.outerTextProvider.tintColor = UIColor.nowPlayingBlue()
-            handler(template)
-        case .graphicBezel:
-            let template = CLKComplicationTemplateGraphicBezelCircularText(
-                circularTemplate: CLKComplicationTemplateGraphicCircularClosedGaugeText(
-                    gaugeProvider: CLKSimpleGaugeProvider(style: .fill,
-                                                          gaugeColor: UIColor.nowPlayingBlue(),
-                                                          fillFraction: fillFraction),
-                    centerTextProvider: CLKSimpleTextProvider(text: "💧")
-                ),
-                textProvider: CLKSimpleTextProvider(text: "Water: \(displayVolume) - \(displayPercentOfGoal)")
-            )
-            handler(template)
-        case .circularSmall:
-            let template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: "💧"),
-                                                                        fillFraction: fillFraction,
-                                                                        ringStyle: .closed)
-            template.tintColor = UIColor.nowPlayingBlue()
-            handler(template)
-        case .modularSmall:
-            let template = CLKComplicationTemplateModularSmallRingText(textProvider: CLKSimpleTextProvider(text: "💧"),
-                                                                       fillFraction: fillFraction,
-                                                                       ringStyle: .closed)
-            template.tintColor = UIColor.nowPlayingBlue()
-            handler(template)
-        default:
-            handler(nil)
-        }
+        let template = getTemplate(complication: complication,
+                                   fillFraction: fillFraction,
+                                   displayPercentOfGoal: displayPercentOfGoal,
+                                   displayVolume: displayVolume)
+
+        handler(template)
     }
     
 }
