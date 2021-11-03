@@ -81,8 +81,8 @@ struct HealthKitAuthView: View {
                         .padding(.top)
                 } else {
                     Button(action: {
-                        // TODO: dismiss this form after requesting authorization if authorization was granted.
                         healthStore.requestAuthorization()
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Request access")
                     }
