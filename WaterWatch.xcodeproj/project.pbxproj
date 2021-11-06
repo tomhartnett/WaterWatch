@@ -17,13 +17,11 @@
 		E2322AED272497BE008FD061 /* HealthKitAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2322AEB272497BE008FD061 /* HealthKitAuthView.swift */; };
 		E2545188238AD656003D6843 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2545187238AD656003D6843 /* GlobalState.swift */; };
 		E2545190238B5646003D6843 /* AddOuncesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254518F238B5646003D6843 /* AddOuncesView.swift */; };
+		E28BD5292736C75B008AEC3B /* WaterWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BD5282736C75B008AEC3B /* WaterWatchApp.swift */; };
 		E2923F8123900E13001F6CB7 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */; };
 		E2B92DEE238739150015676D /* WaterWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E2B92DED238739150015676D /* WaterWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E2B92DF4238739150015676D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF2238739150015676D /* Interface.storyboard */; };
 		E2B92DF6238739160015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92DF5238739160015676D /* Assets.xcassets */; };
 		E2B92DFD238739160015676D /* WaterWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2B92DFC238739160015676D /* WaterWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E2B92E04238739160015676D /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E03238739160015676D /* HostingController.swift */; };
-		E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E05238739160015676D /* ExtensionDelegate.swift */; };
 		E2B92E08238739160015676D /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B92E07238739160015676D /* ComplicationController.swift */; };
 		E2B92E0A238739170015676D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E09238739170015676D /* Assets.xcassets */; };
 		E2B92E0D238739170015676D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B92E0C238739170015676D /* Preview Assets.xcassets */; };
@@ -84,15 +82,13 @@
 		E2322AEB272497BE008FD061 /* HealthKitAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitAuthView.swift; sourceTree = "<group>"; };
 		E2545187238AD656003D6843 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalState.swift; path = "WaterWatch WatchKit Extension/GlobalState.swift"; sourceTree = SOURCE_ROOT; };
 		E254518F238B5646003D6843 /* AddOuncesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOuncesView.swift; sourceTree = "<group>"; };
+		E28BD5282736C75B008AEC3B /* WaterWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWatchApp.swift; sourceTree = "<group>"; };
 		E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		E2B92DE9238739140015676D /* WaterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B92DED238739150015676D /* WaterWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WaterWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2B92DF3238739150015676D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		E2B92DF5238739160015676D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B92DF7238739160015676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B92DFC238739160015676D /* WaterWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WaterWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2B92E03238739160015676D /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
-		E2B92E05238739160015676D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		E2B92E07238739160015676D /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		E2B92E09238739170015676D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B92E0C238739170015676D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -161,7 +157,6 @@
 		E2B92DF1238739150015676D /* WaterWatch WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
-				E2B92DF2238739150015676D /* Interface.storyboard */,
 				E2B92DF5238739160015676D /* Assets.xcassets */,
 				E2B92DF7238739160015676D /* Info.plist */,
 			);
@@ -172,8 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				E21D217C27259A63003A6FB9 /* HealthKitStore.swift */,
-				E2B92E03238739160015676D /* HostingController.swift */,
-				E2B92E05238739160015676D /* ExtensionDelegate.swift */,
 				E2B92E07238739160015676D /* ComplicationController.swift */,
 				E2923F8023900E13001F6CB7 /* UIColor+Extension.swift */,
 				E2545186238AC0D3003D6843 /* Models */,
@@ -182,6 +175,7 @@
 				E2B92E09238739170015676D /* Assets.xcassets */,
 				E2B92E0E238739170015676D /* Info.plist */,
 				E2B92E0B238739170015676D /* Preview Content */,
+				E28BD5282736C75B008AEC3B /* WaterWatchApp.swift */,
 			);
 			path = "WaterWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -310,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2B92DF6238739160015676D /* Assets.xcassets in Resources */,
-				E2B92DF4238739150015676D /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,12 +325,11 @@
 			files = (
 				E2F73C96273012020002CF45 /* SettingsView.swift in Sources */,
 				E21198B5238ABA5E0088F5FD /* AddMillilitersView.swift in Sources */,
-				E2B92E04238739160015676D /* HostingController.swift in Sources */,
 				E21B97442392FDED002265AB /* HomeView.swift in Sources */,
 				E2B92E08238739160015676D /* ComplicationController.swift in Sources */,
 				E21B974023902689002265AB /* GoalMillilitersView.swift in Sources */,
 				E21B97422392A95E002265AB /* GoalOuncesView.swift in Sources */,
-				E2B92E06238739160015676D /* ExtensionDelegate.swift in Sources */,
+				E28BD5292736C75B008AEC3B /* WaterWatchApp.swift in Sources */,
 				E2545190238B5646003D6843 /* AddOuncesView.swift in Sources */,
 				E2545188238AD656003D6843 /* GlobalState.swift in Sources */,
 				E21198B1238AB97A0088F5FD /* Summary.swift in Sources */,
@@ -362,17 +354,6 @@
 			targetProxy = E2B92DFE238739160015676D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		E2B92DF2238739150015676D /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E2B92DF3238739150015676D /* Base */,
-			);
-			name = Interface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E2B92E0F238739170015676D /* Debug */ = {
