@@ -27,8 +27,8 @@ enum HomeViewSheet: Identifiable {
 }
 
 struct HomeView: View {
-    @StateObject var globalState = GlobalState()
-    @StateObject var healthStore = HealthKitStore()
+    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var healthStore: HealthKitStore
     @State private var selectedSheet: HomeViewSheet? = nil
     
     let timeFormatter: DateFormatter = {

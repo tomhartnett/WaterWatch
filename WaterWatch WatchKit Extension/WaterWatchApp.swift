@@ -12,6 +12,7 @@ import SwiftUI
 struct WaterWatchApp: App {
     @Environment(\.scenePhase) var scenePhase
 
+    @StateObject var globalState = GlobalState()
     @StateObject var healthStore = HealthKitStore()
 
     init() {}
@@ -19,6 +20,7 @@ struct WaterWatchApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(globalState)
                 .environmentObject(healthStore)
         }
         .onChange(of: scenePhase) { newScenePhase in
